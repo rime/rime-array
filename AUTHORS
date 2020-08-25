@@ -1,6 +1,8 @@
 
-Jiehong Ma <ma.jiehong@gmail.com> : (GPLv3)
-based on original work by 廖明德 / Ming-Te Liao : (Array Input Method Public License)
+Terry Tsang <archerindigo@gmail.com> : (GPLv3)
+schema based on previous work by Jiehong Ma <ma.jiehong@gmail.com>: (GPLv3)
+data refined from the work of Gontera Yeh
+input method based on original work by 廖明德 / Ming-Te Liao : (Array Input Method Public License)
 http://www.array.com.tw/company/array_license.pdf
   array30.*.yaml
 
