@@ -4,10 +4,11 @@
 schema:
   schema_id: array30
   name: "行列30"
-  version: "0.12"
+  version: "1.0"
   author:
     - 發明人 廖明德先生
     - Jiehong Ma <ma.jiehong@gmail.com>
+    - Terry Tsang <archerindigo@gmail.com>
   description: |
     行列輸入法
     http://www.array.com.tw/
@@ -26,6 +27,9 @@ switches:
     states: [ 常用, 增廣 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
+
+menu:
+  page_size: 10
 
 engine:
   processors:
@@ -52,16 +56,50 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./'
+  alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?QWERTYUIOP'
   delimiter: " '"
   #max_code_length: 5
+  algebra:
+    # "?"萬用字元
+    - derive/^(.).$/$1\?/               # .?
+    - derive/^.(.)$/\?$1/               # ?.
+    - derive/^(.)(.).$/$1$2\?/          # ..?
+    - derive/^(.).(.)$/$1\?$2/          # .?.
+    - derive/^(.)..$/$1\?\?/            # .??
+    - derive/^.(.)(.)$/\?$1$2/          # ?..
+    - derive/^.(.).$/\?$1\?/            # ?.?
+    - derive/^..(.)$/\?\?$1/            # ??.
+    - derive/^(.)(.)(.).$/$1$2$3\?/     # ...?
+    - derive/^(.)(.).(.)$/$1$2\?$3/     # ..?.
+    - derive/^(.)(.)..$/$1$2\?\?/       # ..??
+    - derive/^(.).(.)(.)$/$1\?$2$3/     # .?..
+    - derive/^(.).(.).$/$1\?$2\?/       # .?.?
+    - derive/^(.)..(.)$/$1\?\?$2/       # .??.
+    - derive/^(.)...$/$1\?\?\?/         # .???
+    - derive/^.(.)(.)(.)$/\?$1$2$3/     # ?...
+    - derive/^.(.)(.).$/\?$1$2\?/       # ?..?
+    - derive/^.(.).(.)$/\?$1\?$2/       # ?.?.
+    - derive/^.(.)..$/\?$1\?\?/         # ?.??
+    - derive/^..(.)(.)$/\?\?$1$2/       # ??..
+    - derive/^..(.).$/\?\?$1\?/         # ??.?
+    - derive/^...(.)$/\?\?\?$1/         # ???.
 
 translator:
   dictionary: array30
   enable_charset_filter: true
   disable_user_dict_for_patterns:
-    - "^.$"  # 單碼不調頻
+    - "^.{1,2}$"  # 單碼及雙碼不調頻，以保持簡碼位置
   preedit_format: &format
+    - 'xform|^Q$|標點符號|'
+    - 'xform|^W$|括號符號|'
+    - 'xform|^E$|一般符號|'
+    - 'xform|^R$|數學符號|'
+    - 'xform|^T$|方向符號|'
+    - 'xform|^Y$|單位符號|'
+    - 'xform|^U$|圖表符號|'
+    - 'xform|^I$|順序符號|'
+    - 'xform|^O$|希臘符號|'
+    - 'xform|^P$|注音符號|'
     - 'xform|v|4v|'
     - 'xform|q|1^|'
     - 'xform|w|2^|'
@@ -123,6 +161,5 @@ key_binder:
 recognizer:
   patterns:
     email: "^[a-z][-_.0-9a-z]*@.*$"
-    uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp:|mailto:).*$"
     reverse_lookup: "`[a-z]*'?$"
