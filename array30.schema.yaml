@@ -1,4 +1,5 @@
-# Rime schema settings
+# array30.scheme.yaml
+# vim: set sw=2 sts=2 et:
 # encoding: utf-8
 
 schema:
@@ -59,7 +60,7 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?QWERTYUIOP'
+  alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?ABCDEFGHJIKLMNOPQRSTUVWXYZ'
   delimiter: " '"
   #max_code_length: 5
   algebra:
@@ -90,8 +91,9 @@ speller:
 translator:
   dictionary: array30
   enable_charset_filter: true
+  enable_completion: true   # 預設啟動逐鍵提示，照顧emoji輸入
   disable_user_dict_for_patterns:
-    - "^.{1,2}$"  # 單碼及雙碼不調頻，以保持簡碼位置
+    - "^[^ASDFGHJKL].?$"  # 單碼及雙碼不調頻，以保持簡碼位置。Emoji例外
   preedit_format: &format
     - 'xform|^Q$|標點符號|'
     - 'xform|^W$|括號符號|'
@@ -103,6 +105,15 @@ translator:
     - 'xform|^I$|順序符號|'
     - 'xform|^O$|希臘符號|'
     - 'xform|^P$|注音符號|'
+    - 'xform|^A$|🙂|'   # Smileys & Emotion
+    - 'xform|^S$|🧑|'   # People & Body
+    - 'xform|^D$|🐕|'   # Animals & Nature
+    - 'xform|^F$|🍴|'   # Food & Drink
+    - 'xform|^G$|✈|'   # Travel & Places
+    - 'xform|^H$|💡|'   # Activities
+    - 'xform|^J$|💡|'   # Objects
+    - 'xform|^K$|🔣|'   # Symbols
+    - 'xform|^L$|🏴|'   # Flags
     - 'xform|v|4v|'
     - 'xform|q|1^|'
     - 'xform|w|2^|'

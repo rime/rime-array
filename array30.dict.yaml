@@ -1,7 +1,7 @@
 # encoding: utf-8
 # 30行列
 # 
-# v1.0鍵碼表參照：
+# v1.0後鍵碼表參照：
 # 老刀行列30 gcin鍵碼表(v0.61)
 # https://github.com/gontera/array30
 #
@@ -20,14 +20,16 @@
 # v0.2或以前
 # Jiehong Ma <ma.jiehong@gmail.com>
 #
-# v1.0
+# v1.0或以後
 # Terry Tsang <archerindigo@gmail.com>
 
 ---
 name: "array30"
-version: "1.0"
+version: "1.1"
 sort: original
 use_preset_vocabulary: true
+import_tables:
+  - array30.emoji
 ...
 
 # Begin of Array30 Special Code
