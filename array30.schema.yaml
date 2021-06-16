@@ -27,6 +27,8 @@ switches:
     states: [ 常用, 增廣 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
+  - name: emoji_suggestion
+    states: [ "🈚️", "🈶️" ]
 
 menu:
   page_size: 10
@@ -53,6 +55,7 @@ engine:
     - reverse_lookup_translator
   filters:
     - simplifier
+    - simplifier@emoji_suggestion
     - uniquifier
 
 speller:
@@ -132,6 +135,11 @@ translator:
     - 'xform|/|0v|'
     - 'xlit|~-^v|～‐↑↓|'
   comment_format: *format
+
+emoji_suggestion:
+  opencc_config: emoji.json
+  option_name: emoji_suggestion
+  tips: all
 
 reverse_lookup:
   dictionary: luna_pinyin
