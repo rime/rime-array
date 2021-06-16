@@ -133,10 +133,6 @@ translator:
     - 'xlit|~-^v|～‐↑↓|'
   comment_format: *format
 
-abc_segmentor:
-  extra_tags:
-    - reverse_lookup
-
 reverse_lookup:
   dictionary: luna_pinyin
   prism: luna_quanpin
