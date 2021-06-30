@@ -30,15 +30,15 @@
 
 此為在原行列30的基礎上新增的emoji輸入方案。用家可透過美式鍵盤大階`A-L`行選取emoji。第一層分類如下：
 
-**A**: 表情符號 Smileys & Emotion
-**S**: 人物及身體 People & Body
-**D**: 動物及自然界 Animals & Nature
-**F**: 食物及飲料 Food & Drink
-**G**: 旅行及地點 Travel & Places
-**H**: 活動 Activities
-**J:** 物件Objects
-**K**: 圖標符號 Symbols
-**L**: 旗織 Flags
+- `A`: 表情符號 Smileys & Emotion
+- `S`: 人物及身體 People & Body
+- `D`: 動物及自然界 Animals & Nature
+- `F`: 食物及飲料 Food & Drink
+- `G`: 旅行及地點 Travel & Places
+- `H`: 活動 Activities
+- `J`: 物件Objects
+- `K`: 圖標符號 Symbols
+- `L`: 旗織 Flags
 
 所有emoji由二至三個鍵碼組成。更詳細的取碼原則請參考[鍵碼表](array30.emoji.dict.yaml)開首的附註。
 
