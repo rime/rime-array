@@ -32,7 +32,7 @@ version: "1.1"
 sort: original
 use_preset_vocabulary: true
 import_tables:
-  - array30.emoji
+  - array30_emoji
 ...
 
 # Begin of Array30 Special Code
