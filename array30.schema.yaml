@@ -5,13 +5,13 @@
 schema:
   schema_id: array30
   name: "行列30"
-  version: "1.1"
+  version: "2.0"
   author:
     - 發明人 廖明德先生
     - Jiehong Ma <ma.jiehong@gmail.com>
     - Terry Tsang <archerindigo@gmail.com>
   description: |
-    行列輸入法
+    行列30輸入法
     http://www.array.com.tw/
   dependencies:
     - array30_wsymbols
@@ -115,6 +115,7 @@ speller:
 translator:
   dictionary: array30
   enable_charset_filter: true
+  enable_user_dict: true    # 用戶詞典。主要用於調頻
   enable_completion: true   # 預設啟動逐鍵提示，照顧emoji輸入
   disable_user_dict_for_patterns:
     - "^[^ASDFGHJKL].?$"  # 單碼及雙碼不調頻，以保持簡碼位置。Emoji例外
