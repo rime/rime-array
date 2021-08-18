@@ -14,6 +14,7 @@ schema:
     行列輸入法
     http://www.array.com.tw/
   dependencies:
+    - array30_wsymbols
     - luna_quanpin
 
 switches:
@@ -48,11 +49,13 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
+    - affix_segmentor@wsymbols
     - affix_segmentor@luna_pinyin                   # 反查拼音用
     - punct_segmentor
     - fallback_segmentor
   translators:
     - table_translator
+    - table_translator@wsymbols
     - punct_translator
     - script_translator@luna_pinyin                 # 反查拼音用
   filters:
@@ -97,16 +100,6 @@ translator:
   disable_user_dict_for_patterns:
     - "^[^ASDFGHJKL].?$"  # 單碼及雙碼不調頻，以保持簡碼位置。Emoji例外
   preedit_format: &format
-    - 'xform|^Q$|標點符號|'
-    - 'xform|^W$|括號符號|'
-    - 'xform|^E$|一般符號|'
-    - 'xform|^R$|數學符號|'
-    - 'xform|^T$|方向符號|'
-    - 'xform|^Y$|單位符號|'
-    - 'xform|^U$|圖表符號|'
-    - 'xform|^I$|順序符號|'
-    - 'xform|^O$|希臘符號|'
-    - 'xform|^P$|注音符號|'
     - 'xform|^A$|🙂|'   # Smileys & Emotion
     - 'xform|^S$|🧑|'   # People & Body
     - 'xform|^D$|🐕|'   # Animals & Nature
@@ -149,6 +142,24 @@ translator:
     - 'xlit|~-^v|～‐↑↓|'
   comment_format: *format
 
+wsymbols:
+  tag: wsymbols
+  dictionary: array30_wsymbols
+  enable_completion: false
+  enable_sentence: false
+  enable_user_dict: false
+  preedit_format:
+    - 'xform|^w1$|標點符號|'
+    - 'xform|^w2$|括號符號|'
+    - 'xform|^w3$|一般符號|'
+    - 'xform|^w4$|數學符號|'
+    - 'xform|^w5$|方向符號|'
+    - 'xform|^w6$|單位符號|'
+    - 'xform|^w7$|圖表符號|'
+    - 'xform|^w8$|順序符號|'
+    - 'xform|^w9$|希臘符號|'
+    - 'xform|^w0$|注音符號|'
+
 emoji_suggestion:
   opencc_config: emoji.json
   option_name: emoji_suggestion
@@ -185,6 +196,7 @@ key_binder:
 
 recognizer:
   patterns:
+    wsymbols: "^[w][0-9]$"
     luna_pinyin: "`[a-z]*'?$"
     email: "^[a-z][-_.0-9a-z]*@.*$"
     url: "^(www[.]|https?:|ftp:|mailto:).*$"
