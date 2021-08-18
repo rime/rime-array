@@ -64,6 +64,48 @@ engine:
     - uniquifier
     - reverse_lookup_filter@reverse_lookup_array30      # 反查
 
+array30_format:
+    - 'xform|^A$|🙂|'   # Smileys & Emotion
+    - 'xform|^S$|🧑|'   # People & Body
+    - 'xform|^D$|🐕|'   # Animals & Nature
+    - 'xform|^F$|🍴|'   # Food & Drink
+    - 'xform|^G$|✈|'   # Travel & Places
+    - 'xform|^H$|⚽|'   # Activities
+    - 'xform|^J$|💡|'   # Objects
+    - 'xform|^K$|🔣|'   # Symbols
+    - 'xform|^L$|🏴|'   # Flags
+    - 'xform|v|4v|'
+    - 'xform|q|1↑|'
+    - 'xform|w|2↑|'
+    - 'xform|e|3↑|'
+    - 'xform|r|4↑|'
+    - 'xform|t|5↑|'
+    - 'xform|y|6↑|'
+    - 'xform|u|7↑|'
+    - 'xform|i|8↑|'
+    - 'xform|o|9↑|'
+    - 'xform|p|0↑|'
+    - 'xform|a|1‐|'
+    - 'xform|s|2‐|'
+    - 'xform|d|3‐|'
+    - 'xform|f|4‐|'
+    - 'xform|g|5‐|'
+    - 'xform|h|6‐|'
+    - 'xform|j|7‐|'
+    - 'xform|k|8‐|'
+    - 'xform|l|9‐|'
+    - 'xform|;|0‐|'
+    - 'xform|z|1↓|'
+    - 'xform|x|2↓|'
+    - 'xform|c|3↓|'
+    - 'xform|b|5↓|'
+    - 'xform|n|6↓|'
+    - 'xform|m|7↓|'
+    - 'xform|,|8↓|'
+    - 'xform|\.|9↓|'
+    - 'xform|/|0↓|'
+    - 'xform|~| |'      # 消除逐鍵提示前綴'~'
+
 speller:
   alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?ABCDEFGHJIKLMNOPQRSTUVWXYZ'
   delimiter: " '"
@@ -99,48 +141,10 @@ translator:
   enable_completion: true   # 預設啟動逐鍵提示，照顧emoji輸入
   disable_user_dict_for_patterns:
     - "^[^ASDFGHJKL].?$"  # 單碼及雙碼不調頻，以保持簡碼位置。Emoji例外
-  preedit_format: &format
-    - 'xform|^A$|🙂|'   # Smileys & Emotion
-    - 'xform|^S$|🧑|'   # People & Body
-    - 'xform|^D$|🐕|'   # Animals & Nature
-    - 'xform|^F$|🍴|'   # Food & Drink
-    - 'xform|^G$|✈|'   # Travel & Places
-    - 'xform|^H$|⚽|'   # Activities
-    - 'xform|^J$|💡|'   # Objects
-    - 'xform|^K$|🔣|'   # Symbols
-    - 'xform|^L$|🏴|'   # Flags
-    - 'xform|v|4v|'
-    - 'xform|q|1^|'
-    - 'xform|w|2^|'
-    - 'xform|e|3^|'
-    - 'xform|r|4^|'
-    - 'xform|t|5^|'
-    - 'xform|y|6^|'
-    - 'xform|u|7^|'
-    - 'xform|i|8^|'
-    - 'xform|o|9^|'
-    - 'xform|p|0^|'
-    - 'xform|a|1-|'
-    - 'xform|s|2-|'
-    - 'xform|d|3-|'
-    - 'xform|f|4-|'
-    - 'xform|g|5-|'
-    - 'xform|h|6-|'
-    - 'xform|j|7-|'
-    - 'xform|k|8-|'
-    - 'xform|l|9-|'
-    - 'xform|;|0-|'
-    - 'xform|z|1v|'
-    - 'xform|x|2v|'
-    - 'xform|c|3v|'
-    - 'xform|b|5v|'
-    - 'xform|n|6v|'
-    - 'xform|m|7v|'
-    - 'xform|,|8v|'
-    - 'xform|\.|9v|'
-    - 'xform|/|0v|'
-    - 'xlit|~-^v|～‐↑↓|'
-  comment_format: *format
+  preedit_format:
+    __include: array30_format
+  comment_format:
+    __include: array30_format
 
 wsymbols:
   tag: wsymbols
@@ -183,7 +187,8 @@ reverse_lookup_array30:
   tags: [ luna_pinyin ]
   overwrite_comment: true
   dictionary: array30
-  comment_format: *format
+  comment_format:
+    __include: array30_format
 
 punctuator:
   import_preset: default
