@@ -48,16 +48,18 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
+    - affix_segmentor@luna_pinyin                   # 反查拼音用
     - punct_segmentor
     - fallback_segmentor
   translators:
     - table_translator
     - punct_translator
-    - reverse_lookup_translator
+    - script_translator@luna_pinyin                 # 反查拼音用
   filters:
     - simplifier
     - simplifier@emoji_suggestion
     - uniquifier
+    - reverse_lookup_filter@reverse_lookup_array30      # 反查
 
 speller:
   alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?ABCDEFGHJIKLMNOPQRSTUVWXYZ'
@@ -152,7 +154,9 @@ emoji_suggestion:
   option_name: emoji_suggestion
   tips: all
 
-reverse_lookup:
+# 反查拼音用translator
+luna_pinyin:
+  tag: luna_pinyin
   dictionary: luna_pinyin
   prism: luna_quanpin
   prefix: "`"
@@ -162,6 +166,12 @@ reverse_lookup:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
+
+# 從其他輸入方案反查行列
+reverse_lookup_array30:
+  tags: [ luna_pinyin ]
+  overwrite_comment: true
+  dictionary: array30
   comment_format: *format
 
 punctuator:
@@ -175,6 +185,6 @@ key_binder:
 
 recognizer:
   patterns:
+    luna_pinyin: "`[a-z]*'?$"
     email: "^[a-z][-_.0-9a-z]*@.*$"
     url: "^(www[.]|https?:|ftp:|mailto:).*$"
-    reverse_lookup: "`[a-z]*'?$"
