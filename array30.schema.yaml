@@ -110,7 +110,7 @@ translator:
     - 'xform|^D$|🐕|'   # Animals & Nature
     - 'xform|^F$|🍴|'   # Food & Drink
     - 'xform|^G$|✈|'   # Travel & Places
-    - 'xform|^H$|💡|'   # Activities
+    - 'xform|^H$|⚽|'   # Activities
     - 'xform|^J$|💡|'   # Objects
     - 'xform|^K$|🔣|'   # Symbols
     - 'xform|^L$|🏴|'   # Flags
