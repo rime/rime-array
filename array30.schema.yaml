@@ -50,12 +50,14 @@ engine:
     - matcher
     - abc_segmentor
     - affix_segmentor@wsymbols
+    - affix_segmentor@array30_query                 # "?"萬用字元用
     - affix_segmentor@luna_pinyin                   # 反查拼音用
     - punct_segmentor
     - fallback_segmentor
   translators:
     - table_translator
     - table_translator@wsymbols
+    - table_translator@array30_query                # "?"萬用字元用
     - punct_translator
     - script_translator@luna_pinyin                 # 反查拼音用
   filters:
@@ -107,33 +109,8 @@ array30_format:
     - 'xform|~| |'      # 消除逐鍵提示前綴'~'
 
 speller:
-  alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?ABCDEFGHJIKLMNOPQRSTUVWXYZ'
-  delimiter: " '"
-  #max_code_length: 5
-  algebra:
-    # "?"萬用字元
-    - derive/^(.).$/$1\?/               # .?
-    - derive/^.(.)$/\?$1/               # ?.
-    - derive/^(.)(.).$/$1$2\?/          # ..?
-    - derive/^(.).(.)$/$1\?$2/          # .?.
-    - derive/^(.)..$/$1\?\?/            # .??
-    - derive/^.(.)(.)$/\?$1$2/          # ?..
-    - derive/^.(.).$/\?$1\?/            # ?.?
-    - derive/^..(.)$/\?\?$1/            # ??.
-    - derive/^(.)(.)(.).$/$1$2$3\?/     # ...?
-    - derive/^(.)(.).(.)$/$1$2\?$3/     # ..?.
-    - derive/^(.)(.)..$/$1$2\?\?/       # ..??
-    - derive/^(.).(.)(.)$/$1\?$2$3/     # .?..
-    - derive/^(.).(.).$/$1\?$2\?/       # .?.?
-    - derive/^(.)..(.)$/$1\?\?$2/       # .??.
-    - derive/^(.)...$/$1\?\?\?/         # .???
-    - derive/^.(.)(.)(.)$/\?$1$2$3/     # ?...
-    - derive/^.(.)(.).$/\?$1$2\?/       # ?..?
-    - derive/^.(.).(.)$/\?$1\?$2/       # ?.?.
-    - derive/^.(.)..$/\?$1\?\?/         # ?.??
-    - derive/^..(.)(.)$/\?\?$1$2/       # ??..
-    - derive/^..(.).$/\?\?$1\?/         # ??.?
-    - derive/^...(.)$/\?\?\?$1/         # ???.
+  alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  delimiter: "'"
 
 translator:
   dictionary: array30
@@ -163,6 +140,16 @@ wsymbols:
     - 'xform|^w8$|順序符號|'
     - 'xform|^w9$|希臘符號|'
     - 'xform|^w0$|注音符號|'
+
+array30_query:
+  tag: array30_query
+  dictionary: array30_query
+  enable_charset_filter: true
+  enable_completion: true
+  preedit_format:
+    __include: array30_format
+  comment_format:
+    __include: array30_format
 
 emoji_suggestion:
   opencc_config: emoji.json
@@ -202,6 +189,7 @@ key_binder:
 recognizer:
   patterns:
     wsymbols: "^[w][0-9]$"
+    array30_query: "^.*[?]+[a-z;,.\/]*'?$"
     luna_pinyin: "`[a-z]*'?$"
     email: "^[a-z][-_.0-9a-z]*@.*$"
     url: "^(www[.]|https?:|ftp:|mailto:).*$"

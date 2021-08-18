@@ -1,8 +1,4 @@
-# array30.dict.yaml
-# vim: set tabstop=8 noet:
-# encoding: utf-8
-#
-# 行列30鍵碼表
+# array30_query.dict.yaml
 
 ---
 name: "array30"
@@ -11,5 +7,4 @@ sort: original
 use_preset_vocabulary: false
 import_tables:
   - array30_main
-  - array30_emoji
 ...
