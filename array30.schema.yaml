@@ -109,8 +109,11 @@ array30_format:
     - 'xform|~| |'      # 消除逐鍵提示前綴'~'
 
 speller:
-  alphabet: 'abcdefghjiklmnopqrstuvwxyz;,./?ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  delimiter: "'"
+  alphabet: "abcdefghjiklmnopqrstuvwxyz;,./?'ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  delimiter: "\\"
+  algebra:
+    - xform/^(.*)!$/$1/                 # 簡碼
+    - xform/^(.*)@$/$1/                 # 特別碼（須置於簡碼之後）
 
 translator:
   dictionary: array30
@@ -163,7 +166,7 @@ luna_pinyin:
   dictionary: luna_pinyin
   prism: luna_quanpin
   prefix: "`"
-  suffix: "'"
+  suffix: "\\"
   tips: 〔拼音〕
   preedit_format:
     - xform/([nl])v/$1ü/
@@ -190,7 +193,7 @@ key_binder:
 recognizer:
   patterns:
     wsymbols: "^[w][0-9]$"
-    array30_query: "^.*[?]+[a-z;,.\/]*'?$"
-    luna_pinyin: "`[a-z]*'?$"
+    array30_query: "^.*[?]+[a-z;,.\/]*\\\\?$"
+    luna_pinyin: "`[a-z]*\\\\?$"
     email: "^[a-z][-_.0-9a-z]*@.*$"
     url: "^(www[.]|https?:|ftp:|mailto:).*$"

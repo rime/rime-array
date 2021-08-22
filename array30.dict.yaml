@@ -8,8 +8,23 @@
 name: "array30"
 version: "2.0"
 sort: original
-use_preset_vocabulary: false
+use_preset_vocabulary: false  # 使用八股文詞庫時需設為true，否則建議設成false
 import_tables:
   - array30_main
+  - array30_phrases    # 使用本方案附帶之行列詞庫，如使用八股文詞敬請將此行註解／移除
   - array30_emoji
+
+# 解除以下註解以使用八股文詞庫
+# 注意：使用八股文詞庫時詞碼沒有 ' 尾綴，候選順位可能會因調頻而置於同碼單字之前
+#encoder:
+#  exclude_patterns:
+#    - '^.*!$'
+#    - '^.*@$'
+#  rules:
+#    - length_equal: 2
+#      formula: "AaAzBaBz"
+#    - length_equal: 3
+#      formula: "AaAzBaCa"
+#    - length_in_range: [3, 99]
+#      formula: "AaBaCaDa"
 ...

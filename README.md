@@ -18,6 +18,12 @@
 
 支援連續輸入多個字之字碼。每字詞之間可以`\`分隔以增加預測準確性。
 
+### 詞彙輸入
+
+預設使用本方案自帶之行列詞庫，符合行列官方詞彙取碼規則（可參考[行列教室](https://www.facebook.com/notes/335303977574152/)最尾部份或[FISH UP行列教學](https://array30.misterfishup.com/tutorial-complete.html#entering-words)）。詞彙以`'`作尾碼。
+
+本方案亦可改用[八股文](https://github.com/rime/rime-essay)自動造詞，惟不支援`'`尾綴，詞彙候選順位可能會因調頻而置於同碼單字之前。啟用方式請參考array30.dict.yaml之附註。
+
 ### 符號組
 
 沿用行列官方符號組輸入方式。輸入`w`+`數字`鍵即可選取各符號分組。

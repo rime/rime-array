@@ -48,6 +48,8 @@ speller:
   alphabet: "abcdefghjiklmnopqrstuvwxyz;,./?"
   delimiter: "'"
   algebra:
+    - xform/^(.*)!$/$1/                 # 簡碼
+    - xform/^(.*)@$/$1/                 # 特別碼（須置於簡碼之後）
     # "?"萬用字元
     - derive/^(.).$/$1\?/               # .?
     - derive/^.(.)$/\?$1/               # ?.
