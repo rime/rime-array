@@ -1,0 +1,10 @@
+# array30_query.dict.yaml
+
+---
+name: "array30"
+version: "2.0"
+sort: original
+use_preset_vocabulary: false
+import_tables:
+  - array30_main
+...
