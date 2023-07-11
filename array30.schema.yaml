@@ -76,7 +76,6 @@ array30_format:
     - 'xform|^J$|💡|'   # Objects
     - 'xform|^K$|🔣|'   # Symbols
     - 'xform|^L$|🏴|'   # Flags
-    - 'xform|v|4v|'
     - 'xform|q|1↑|'
     - 'xform|w|2↑|'
     - 'xform|e|3↑|'
@@ -100,6 +99,7 @@ array30_format:
     - 'xform|z|1↓|'
     - 'xform|x|2↓|'
     - 'xform|c|3↓|'
+    - 'xform|v|4↓|'
     - 'xform|b|5↓|'
     - 'xform|n|6↓|'
     - 'xform|m|7↓|'
