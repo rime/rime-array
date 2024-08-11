@@ -10,11 +10,13 @@ schema:
     - 發明人 廖明德先生
     - Jiehong Ma <ma.jiehong@gmail.com>
     - Terry Tsang <archerindigo@gmail.com>
+    - Jeang Bo Yuan <jeangbyj@gmail.com>
   description: |
     行列30輸入法
     http://www.array.com.tw/
   dependencies:
     - array30_wsymbols
+    - array30_query
     - luna_quanpin
 
 switches:
@@ -31,6 +33,8 @@ switches:
     states: [ 。，, ．， ]
   - name: emoji_suggestion
     states: [ "🈚️", "🈶️" ]
+  - name: null2square
+    reset: 1
 
 menu:
   page_size: 10
@@ -65,6 +69,7 @@ engine:
     - simplifier@emoji_suggestion
     - uniquifier
     - reverse_lookup_filter@reverse_lookup_array30      # 反查
+    - simplifier@null2square                            # 將簡碼中的空碼位以「□」顯示
 
 array30_format:
     - 'xform|^A$|🙂|'   # Smileys & Emotion
@@ -107,13 +112,20 @@ array30_format:
     - 'xform|\.|9↓|'
     - 'xform|/|0↓|'
     - 'xform|~| |'      # 消除逐鍵提示前綴'~'
+    - 'xform|!|特|'
+    - 'xform|@|簡|'
 
 speller:
-  alphabet: "abcdefghjiklmnopqrstuvwxyz;,./?'ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  auto_select: true
+  auto_select_pattern: "^[a-z;,./]+[ ]$" # 自動上屏特別碼
+  alphabet: "abcdefghjiklmnopqrstuvwxyz;,./'ABCDEFGHIJKLMNOPQRSTUVWXYZ " # 「空格」 -> 特別碼、重碼
+  initials: "abcdefghjiklmnopqrstuvwxyz;,./ASDFGHJKL"
+  finals: "'ZXCVBNMQWERTYUIOP "
+  use_space: true
   delimiter: "\\"
   algebra:
-    - xform/^(.*)!$/$1/                 # 簡碼
-    - xform/^(.*)@$/$1/                 # 特別碼（須置於簡碼之後）
+    - xform|^([a-z;,./]+)[!]?$|$1 |    # 重碼和特別碼都以「空格」結尾
+    - xform|^([a-z;,./]+)[@]$|$1|      # 簡碼，去掉@後綴
 
 translator:
   dictionary: array30
@@ -121,9 +133,12 @@ translator:
   enable_user_dict: true    # 用戶詞典。主要用於調頻
   enable_completion: true   # 預設啟動逐鍵提示，照顧emoji輸入
   disable_user_dict_for_patterns:
-    - "^[^ASDFGHJKL].?$"  # 單碼及雙碼不調頻，以保持簡碼位置。Emoji例外
+    - "^[a-z;,./]+[! @]?$"  # 特別碼、重碼、簡碼
+    - "^w[0-9]$"            # w + 數字鍵
   preedit_format:
     __include: array30_format
+    __append:
+      - "xform| |重|"
   comment_format:
     __include: array30_format
 
@@ -159,6 +174,12 @@ emoji_suggestion:
   opencc_config: emoji.json
   option_name: emoji_suggestion
   tips: all
+
+null2square:
+  opencc_config: null2square.json
+  option_name: null2square
+  tips: none
+  inherit_comment: true
 
 # 反查拼音用translator
 luna_pinyin:
